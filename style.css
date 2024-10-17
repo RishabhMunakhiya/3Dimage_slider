@@ -1,0 +1,89 @@
+@import url('https://fonts.cdnfonts.com/css/ica-rubrik-black');
+@import url('https://fonts.cdnfonts.com/css/poppins');
+
+html {
+    font-size: 16px; /* Default base size */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.banner {
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, #561013 0%, #881859 80%);
+}
+
+.banner .slider {
+    position: absolute;
+    width: 7rem; /* Scalable using rem */
+    height: 10rem;
+    top: 12%;
+    left: 45%;
+    transform: translateX(-50%);
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    animation: autoRun 50s linear infinite;
+    z-index: 2;
+   
+}
+
+@keyframes autoRun {
+    from {
+        transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+    }
+    to {
+        transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+    }
+}
+
+.banner .slider .item {
+    position: absolute;
+    inset: 0;
+    transform: 
+        rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+        translateZ(35rem); /* Adjusted translateZ for responsive scaling */
+}
+
+.banner .slider .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    border-radius: 5px;
+    box-shadow: 1px 2px 10px 6px rgba(137, 112, 112, 0.4);
+    border: 2px solid rgb(152, 143, 143) ;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .banner .slider {
+        width: 8rem;
+        height: 10rem;
+    }
+    
+    .banner .slider .item {
+        transform: 
+            rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+            translateZ(30rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .banner .slider {
+        width: 6rem;
+        height: 8rem;
+    }
+    
+    .banner .slider .item {
+        transform: 
+            rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+            translateZ(25rem);
+    }
+}
